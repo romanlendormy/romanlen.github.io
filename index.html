@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; manifest-src 'self'; upgrade-insecure-requests">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Roman Lendormy — Machine learning &amp; combinatorial optimization</title>
+<meta name="description" content="Roman Lendormy, M.Sc. student at ENS Paris-Saclay (MVA) and École Polytechnique (X23). Machine learning, combinatorial optimization and generative models.">
+<meta name="theme-color" content="#F2F0EA">
+<link rel="canonical" href="https://romanlendormy.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://romanlendormy.github.io/">
+<meta property="og:title" content="Roman Lendormy — Machine learning &amp; combinatorial optimization">
+<meta property="og:description" content="M.Sc. student at ENS Paris-Saclay (MVA) and École Polytechnique (X23). Research on learned bounds for chance-constrained optimization.">
+<meta property="og:image" content="https://romanlendormy.github.io/assets/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="nav">
+<a class="brand" href="#top">R.LENDORMY <span>/ ∇</span></a>
+<nav class="nav-links" aria-label="Main">
+<a class="sec nl" href="#work">01 Work</a>
+<a class="sec nl" href="#more">02 More</a>
+<a class="sec nl" href="#about">03 About</a>
+<a class="nl" href="https://github.com/romanlendormy">GitHub <span class="nl-arr">↗</span></a>
+<a class="js-mail pill" data-u="roman.lendormy" data-d="ip-paris.fr">Say hello</a>
+</nav>
+</header>
+
+<main>
+<section class="hero" id="top">
+<div class="hero-text">
+<div class="eyebrow">MACHINE LEARNING · COMBINATORIAL OPTIMIZATION · GENERATIVE MODELS</div>
+<h1>Roman<br><em>Lendormy</em></h1>
+<p class="hero-lead">M.Sc. student at ENS Paris-Saclay (MVA) and at École Polytechnique (X23, engineering program).</p>
+<div class="cta">
+<a class="btn btn-ink" href="#work">See the projects <span class="arr">↓</span></a>
+<a class="btn btn-lime" aria-disabled="true" title="CV coming soon">Download CV</a>
+</div>
+</div>
+<figure class="portrait float">
+<div class="shine"><img src="assets/img/portrait.jpg" alt="Portrait of Roman Lendormy" width="800" height="1000"></div>
+<figcaption><span>Paris, France</span><span class="badge-lime">open to research</span></figcaption>
+</figure>
+<canvas class="hero-cv" id="hero-cv" role="img" aria-label="Animated 3D loss landscape with the Adam optimizer descending toward a minimum"></canvas>
+<div class="hero-caption"><span><span class="dot"></span>Adam, lr = 0.03 · step <span id="opt-step">0</span></span><button class="btn-small" id="new-init" type="button">↻ new init</button></div>
+</section>
+
+<section class="section" id="work">
+<div class="section-head">
+<h2>Selected <em>work</em></h2>
+<span class="aside">02 projects · interactive figures</span>
+</div>
+
+<article class="card feature" id="card-cc">
+<div class="feature-text">
+<h3>Learning Chance-Constrained Bounds</h3>
+<div>
+<div class="tagline">01 · ML FOR COMBINATORIAL OPTIMIZATION · 03 → 07 2026</div>
+<div class="subline">Research internship · <a href="https://corail-research.github.io/">CORAIL Research Group</a>, Polytechnique Montréal</div>
+</div>
+<p>Chance-constrained problems require constraints to hold with high probability rather than deterministically. Sampling scenarios from observations turns this stochastic problem into a deterministic one, which is easier to solve. We propose a general approach to solve any combinatorial chance-constrained problem with branch and bound. In our algorithm, bounds are derived from a Lagrangian decomposition over the scenarios, typically tightened through a sub-gradient ascent. We replace this expensive optimization with a graph neural network that predicts the multipliers in a single forward pass, trained self-supervised on the bound it induces, which remains valid regardless of the precision of the GNN. On the chance-constrained multi-dimensional knapsack: about 10× fewer explored nodes and up to 2× faster solving on the largest instances vs. a constraint-programming baseline.</p>
+<div class="chips"><span class="chip">GNN</span><span class="chip">Lagrangian decomposition</span><span class="chip">Branch &amp; bound</span><span class="chip hot">First-author paper in prep</span></div>
+<span class="foot-link">Code &amp; preprint coming soon</span>
+</div>
+<div class="plate">
+<span class="plate-label">fig. — branch &amp; bound search with learned bounds</span>
+<canvas class="cc-cv" id="cc-cv" role="img" aria-label="Animated branch-and-bound tree search, with bounds predicted by a graph neural network"></canvas>
+</div>
+</article>
+
+<article class="card feature flip" id="card-shoe">
+<div class="plate">
+<span class="plate-label">fig. — sketch → latent → shoe</span>
+<div class="shoe-stage"><canvas class="shoe-cv" id="shoe-cv" role="img" aria-label="A shoe sketch dissolving into points that reassemble into a generated shoe photo"></canvas></div>
+</div>
+<div class="feature-text">
+<h3>Sketch Me That Shoe</h3>
+<div>
+<div class="tagline">02 · GENERATIVE MODELS · COMPUTER VISION · 02 → 03 2026</div>
+<div class="subline">Polytechnique course mini-project</div>
+</div>
+<p>Reimplements fine-grained sketch-based retrieval (Yu et al., CVPR 2016) and extends it to generation: a sketch mapper inverts sketches into StyleGAN2's W+ space, supervised by a photo-mapper teacher and the frozen retrieval network, with a pix2pix baseline for comparison. Every model was rebuilt and retrained from scratch.</p>
+<div class="chips"><span class="chip">StyleGAN2</span><span class="chip">GAN inversion</span><span class="chip">Knowledge distillation</span><span class="chip">FG-SBIR</span></div>
+<a class="foot-link" href="https://github.com/romanlendormy/sketch-me-that-shoe">View repo ↗</a>
+</div>
+</article>
+</section>
+
+<section class="section" id="more">
+<div class="section-head ruled">
+<h2>More projects</h2>
+<a class="aside" href="https://github.com/romanlendormy">all repos on GitHub ↗</a>
+</div>
+<div class="grid3">
+<article class="card mini" id="card-blast">
+<div class="mini-plate"><canvas id="blast-cv" role="img" aria-label="Block Blast pieces placed on a grid, with full lines clearing"></canvas></div>
+<h3>Block Blast, played by an RL agent</h3>
+<div><div class="tagline">REINFORCEMENT LEARNING · TEAM PROJECT · 02 → 03 2026</div><div class="subline">Polytechnique course mini-project</div></div>
+<p>RL course team project: built a Block Blast game environment with Gymnasium and experimented with several agents, ranging from a DQN with a CNN to PPO.</p>
+<a class="foot-link" href="https://github.com/NathanDuboisset/RL_project">View repo ↗</a>
+</article>
+<article class="card mini" id="card-cart">
+<div class="mini-plate"><canvas id="cart-cv" role="img" aria-label="Top-10 product recommendations, with the purchased ones dropping into a shopping cart"></canvas></div>
+<h3>Purchase prediction with Carrefour</h3>
+<div><div class="tagline">RECOMMENDER SYSTEMS · 09 2024 → 04 2025</div><div class="subline">Polytechnique team project, with Carrefour</div></div>
+<p>Predicting which products a Carrefour customer will buy next, from purchase history and product features. We compared weighted S-POP, CatBoost, a simple neural network, RNNs and transformers. Best HitRate@10: CatBoost (0.384) and the neural network (0.370).</p>
+<span class="foot-link">Private repo · Carrefour data</span>
+</article>
+<article class="card mini" id="card-x">
+<div class="mini-plate"><canvas id="x-cv" role="img" aria-label="A tweet zooming out into a cloud of classified users"></canvas></div>
+<h3>Influencer or Observer?</h3>
+<div><div class="tagline">NLP · DATA CHALLENGE · 11 → 12 2025</div><div class="subline">Polytechnique course mini-project</div></div>
+<p>Classifying X users from a single tweet (~155k tweets). The decision model combines a fine-tuned CamemBERT and XGBoost, reaching 84.2% Kaggle accuracy.</p>
+<a class="foot-link" href="https://github.com/romanlendormy/datachallenge-X_users_classification">View repo ↗</a>
+</article>
+<article class="card mini" id="card-fit">
+<div class="mini-plate"><canvas id="fit-cv" role="img" aria-label="A stick figure doing push-ups, each repetition receiving a score"></canvas></div>
+<h3>Exercise Form Grader</h3>
+<div><div class="tagline">COMPUTER VISION · TEAM PROJECT · 11 → 12 2025</div><div class="subline">Polytechnique course mini-project</div></div>
+<p>Scores each repetition of a gym exercise from a video. MediaPipe tracks the body’s joints, the exercise is identified by a PointNet-style network, then each rep is detected automatically, and finally compared with a reference movement to give it a quality score.</p>
+<a class="foot-link" href="https://github.com/romanlendormy/CSC_51073_CV_Project">View repo ↗</a>
+</article>
+</div>
+</section>
+
+<section class="section" id="about">
+<div class="section-head ruled">
+<h2>Background</h2>
+<a class="js-mail aside" data-u="roman.lendormy" data-d="ip-paris.fr" data-show="addr" data-suffix=" ↗"></a>
+</div>
+<div class="timeline">
+<div class="tl-col"><div class="tl-title">EDUCATION</div><div class="tl-entry first"><span class="tl-date">2026 → now</span><div class="tl-body"><span class="tl-org">ENS Paris-Saclay</span><span class="tl-role">M.Sc. MVA — Mathematics, Vision, Learning</span><span class="tl-detail">Convex optimization, optimal transport, computer vision, robotics</span></div></div><div class="tl-entry"><span class="tl-date">2023 → now</span><div class="tl-body"><span class="tl-org">École Polytechnique</span><span class="tl-role">Engineering program (X23)</span><span class="tl-detail">Generalist curriculum, from mathematics to quantum physics · Master’s specialization in machine learning</span></div></div><div class="tl-entry"><span class="tl-date">2021 → 2023</span><div class="tl-body"><span class="tl-org">Lycée Hoche, Versailles</span><span class="tl-role">CPGE, mathematics &amp; computer science</span><span class="tl-detail">Two-year intensive preparation for the grandes écoles entrance exams · ranked 1st in class</span></div></div></div>
+<div class="tl-col"><div class="tl-title">EXPERIENCE</div><div class="tl-entry first"><span class="tl-date">03 → 07 2026</span><div class="tl-body"><span class="tl-org">CORAIL Research Group, Polytechnique Montréal</span><span class="tl-role">Research intern — ML for combinatorial optimization</span><span class="tl-detail">GNN-predicted Lagrangian bounds for chance-constrained branch &amp; bound · first-author paper in prep</span></div></div><div class="tl-entry"><span class="tl-date">06 → 09 2025</span><div class="tl-body"><span class="tl-org">Avencore, Paris</span><span class="tl-role">Junior consultant — industrial strategy</span><span class="tl-detail">Strategy redesign for a French defense &amp; aerospace leader · data analysis to standardize industrial parts for an energy client</span></div></div><div class="tl-entry"><span class="tl-date">06 → 07 2019</span><div class="tl-body"><span class="tl-org">CEA, Saclay</span><span class="tl-role">High-school research internship</span><span class="tl-detail">Visits of the SOLEIL synchrotron, the JWST mirror workshop and the NeuroSpin neuroimaging center</span></div></div></div>
+</div>
+<div class="skills">
+<div class="skill"><div class="skill-head"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 4l-3 16"></path></svg></div><span>Code</span></div>
+<div class="stack stack-10"><span class="kicker">LANGUAGES</span><div class="chips"><span class="chip">Python</span><span class="chip">C / C++</span><span class="chip">OCaml</span><span class="chip">Java</span><span class="chip">SQL</span><span class="chip">HTML / CSS</span></div><span class="kicker mt6">FRAMEWORKS</span><div class="chips"><span class="chip">PyTorch</span><span class="chip">TensorFlow</span><span class="chip">Gymnasium</span></div></div></div>
+<div class="skill"><div class="skill-head"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"></path></svg></div><span>Languages</span></div>
+<div class="stack stack-16"><div class="lang"><div class="lang-top"><b>French</b><span>native</span></div><div class="bars" role="img" aria-label="French: native"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div></div><div class="lang"><div class="lang-top"><b>English</b><span>C1 · TOEFL 106/120</span></div><div class="bars" role="img" aria-label="English: C1 · TOEFL 106/120"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div><div class="lang"><div class="lang-top"><b>German</b><span>B2</span></div><div class="bars" role="img" aria-label="German: B2"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div><span class="kicker">CEFR scale, A1 → C2</span></div></div>
+<div class="skill"><div class="skill-head"><div class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16181D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.2-9.3C1.6 8.3 3.8 5 7.2 5c2 0 3.5 1.1 4.8 2.8C13.3 6.1 14.8 5 16.8 5c3.4 0 5.6 3.3 4.4 6.7C19.5 16.4 12 21 12 21z"></path></svg></div><span>Interests</span></div>
+<div class="hobbies">
+<div class="hobby"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F3BD6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M11.1 7.1a16.55 16.55 0 0 1 10.9 4"></path><path d="M12 12a12.6 12.6 0 0 1-8.7 5"></path><path d="M16.8 13.6a16.55 16.55 0 0 1-9 7.5"></path><path d="M20.7 17a12.8 12.8 0 0 0-8.7-5 13.3 13.3 0 0 1 0-10"></path><path d="M6.3 3.8a16.55 16.55 0 0 0 1.9 11.5"></path></svg><span>Volleyball</span></div>
+<div class="hobby"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F3BD6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2.5"></rect><path d="M8.5 7l1.5-3h4l1.5 3"></path><circle cx="12" cy="13.5" r="3.5"></circle></svg><span>Photography</span></div>
+<div class="hobby"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F3BD6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"></rect><path d="M10 9.5v5l4.5-2.5z"></path></svg><span>Video editing</span></div>
+<div class="hobby"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F3BD6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"></path></svg><span>New tech &amp; AI</span></div>
+</div></div>
+</div>
+</section>
+</main>
+
+<footer class="footer">
+<a class="js-mail big" data-u="roman.lendormy" data-d="ip-paris.fr">Let's <em>talk</em> <span class="arr">→</span></a>
+<div class="meta"><span class="js-mail-text" data-u="roman.lendormy" data-d="ip-paris.fr"></span><noscript>roman.lendormy [at] ip-paris [dot] fr</noscript><br>© 2026 Roman Lendormy · site designed and coded with Claude</div>
+</footer>
+</div>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
